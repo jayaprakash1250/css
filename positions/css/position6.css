@@ -1,0 +1,52 @@
+div.box1
+		{
+
+			width:600px;
+			height:600px;
+			border:1px solid;
+			background-color: red;
+		}
+		div.box2
+		{
+			position:absolute;
+			top:55px;
+			left:55px;
+			width:500px;
+			height:500px;
+			border:1px solid;
+			background-color: green;
+
+		}
+		div.box3
+		{
+			position:absolute;
+			top:50px;
+			left:50px;
+			width:400px;
+			height:400px;
+			border:1px solid;
+			background-color: blue;
+
+		}
+		div.box4
+		{
+			position:absolute;
+			top:50px;
+			left:50px;
+			width:300px;
+			height:300px;
+			border:1px solid;
+			background-color: yellow;
+
+		}
+		div.box5
+		{
+			position:absolute;
+			top:50px;
+			left:50px;
+			width:200px;
+			height:200px;
+			border:1px solid;
+			background-color: lightgreen;
+
+		}

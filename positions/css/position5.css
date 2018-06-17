@@ -1,0 +1,33 @@
+div.box1
+{
+	position: static;
+	width:300px;
+	height:200px;
+	background-color: pink;
+}
+div.box2
+{
+	position: absolute;
+    left:1055px;
+	width:300px;
+	height:200px;
+	background-color: skyblue;
+}
+div.box3
+{
+	position:absolute;
+	top:430px;
+	width:300px;
+	height:200px;
+	background-color: lightgreen;
+}
+div.box4
+{
+	position: absolute;
+	top:430px;
+	left:1055px;
+	width:300px;
+	height:200px;
+	background-color: yellow;
+}
+

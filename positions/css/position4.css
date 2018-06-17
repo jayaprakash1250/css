@@ -1,0 +1,15 @@
+
+	div.box1{
+		position: static;
+	width:1000px;
+	height:620px;
+	background-color: pink;
+}
+div.box2
+{
+    position: absolute;
+    left:1000px;
+	width:350px;
+	height:620px;
+	background-color: yellow;
+}

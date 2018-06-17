@@ -1,0 +1,20 @@
+
+	div.box1{
+	width:300px;
+	height:207px;
+	background-color: pink;
+}
+div.box2
+{
+    position: relative;
+    left:300px;
+	width:300px;
+	height:207px;
+	background-color: skyblue;
+}
+div.box3
+{
+	width:300px;
+	height:207px;
+	background-color: lightgreen;
+}
