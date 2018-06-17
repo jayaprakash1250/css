@@ -1,0 +1,28 @@
+div.top2
+{
+	outline:10px solid grey;
+	height:600px;
+	width:100%;
+}
+div.top
+{
+	outline:6px solid cyan;
+	height: 600px;
+	width:100%;
+}
+div.red
+{ 
+float:left;
+  width: 20%;
+	height:600px;
+	background-color: red;
+
+}
+div.black
+{
+ float:left; 
+  width: 80%;
+	height:600px;
+	background-color:black;
+
+}

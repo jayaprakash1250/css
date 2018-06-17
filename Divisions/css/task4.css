@@ -1,0 +1,24 @@
+*{
+	background-color: grey;
+	margin:0;
+}
+#lefttop{
+	float:left;
+	background-color: red;
+	width:30%;
+	height:150px;
+}
+#centre
+{
+	float:left;
+	background-color: blue;
+	width: 40%;
+	height:620px;
+}
+#righttop
+{
+	float:left;
+	background-color: red;
+	height:300px;
+	width:30%;
+}

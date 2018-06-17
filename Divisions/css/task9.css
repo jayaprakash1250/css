@@ -1,0 +1,49 @@
+html, body {
+				margin:10px;
+				background-color: #F8F8FF;
+			}
+.left{
+	display: inline-block;
+	float: left;
+	width:24.2%;
+	height: 600px;
+	outline: 5px solid;
+}
+
+.head{
+	margin-left: 20px;
+	float: left;
+	width:74.2%;
+	height: 130px;
+	outline: 5px solid;
+}
+
+.tleft{
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+	width:36.3%;
+	height: 300px;
+	outline: 5px solid;
+	display: inline-block;
+}
+
+.tright{
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+	width:36.3%;
+	height: 300px;
+	outline: 5px solid;
+
+}
+ 
+ .foot{
+ 	margin-top: 20px;
+ 	margin-left: 20px;
+	float: left;
+	width:74.2%;
+	height: 130px;
+	outline: 5px solid;
+
+ }

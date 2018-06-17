@@ -1,0 +1,25 @@
+*{
+	background-color: grey;
+}
+div.one
+{
+	float:left;
+	border:1px solid orange;
+	width:33%;
+	height: 600px;
+}
+div.two
+{
+	float: left;
+	border:1px solid red;
+	width:33%;
+	height: 600px;
+}
+div.three
+{
+	float: left;
+	border:1px solid grey;
+	width:33%;
+	height: 600px;
+	background-color: green;
+}
