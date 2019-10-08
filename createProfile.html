@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #f1f1f1;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 100px auto;
+        font-family: Raleway;
+        padding: 40px;
+        width: 70%;
+        min-width: 300px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+    textarea, select,input[type="text"],[type="email"],[type="date"],[type="textarea"],[type="number"] {
+        padding: 10px;
+        width: 325px;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        border-color: red;
+
+    }
+    input.valid
+    {
+        border-color:green;
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 100%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .step.active {
+        opacity: 1;
+    }
+    form input:focus,form input:focus
+    {
+
+        border-color: #2ecc71;
+
+    }
+    form input[type="radio"]:focus
+    {
+        width:15px;
+        border-color: #2ecc71;
+
+    }
+    form input[type="button"]:focus
+    {
+        width: 50px;
+
+    }
+    form input[type="submit"],[type="button"]
+    {
+        margin: 20px auto;
+        color: black;
+        padding: 14px 40px;
+        border-radius: 20px;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+    form input[type="submit"]:hover{
+        background-color: #4CAF50;
+    }
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #4CAF50;
+    }
+    div {
+        padding: 10px;
+    }
+    fieldset {
+        padding: 100px;
+        width: 500px;
+        margin: 0px auto;
+    }
+    label {
+        display: inline-block;
+        width: 200px;
+        margin-right: 30px;
+        text-align: right;
+        font-style: oblique;
+        font-family: cursive;
+        color: olivedrab;
+    }
+
+</style>
+<body>
+
+<form id="regForm" action="../CreateProfileServlet" method="Post">
+    <h1>Create-Profile</h1>
+    <!-- One "tab" for each step in the form: -->
+    <div class="tab"><h3>Personal Details</h3>
+        <div>
+            <label>Full Name(*)</label>
+            <input type="text"  name="name" id="name" >
+        </div>
+        <div>
+            <label>Date of Birth</label> <input type="date" required="required" name="dob" id="dob">
+        </div>
+        <div>
+            <label>Gender(*)</label>
+            <input name="gender"  type="Radio" value="male"checked="checked"> Male
+            <input name="gender"  type="Radio"  value="female"> Female
+        </div>
+        <div>
+            <label>Mobile(*)</label> <input type="text" name="mobile" id="mobile"required="required">
+        </div>
+        <div>
+            <label>Email(*)</label> <input type="email" required="required" id="email" name="email"  >
+        </div>
+        <div>
+            <label>Address</label>
+            <textarea rows="4" cols="" name="address" id="address"></textarea>
+        </div>
+    </div>
+    <div class="tab"><h3>Work Details</h3>
+        <div>
+            <label>Experience(*)</label> <input type="number" required="required" id="experience" name="experience">
+        </div>
+
+        <div>
+            <label>Project Status(*)</label>
+            <input name="projectStatus"  type="Radio" value="yes"> yes
+            <input name="projectStatus"  type="Radio"  value="no"checked="checked"> no
+        </div>
+        <div>
+            <label>CurrentLocation(*)</label>
+            <select  name="location" id="location">
+
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Pune">Pune</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Gurgaon">Gurgaon</option>
+            </select>
+        </div>
+
+
+
+
+        <div >
+            <label>Skills (*)</label> <input name="skills" id="skills" type="text"  placeholder=" c , java, oracle">
+        </div>
+        <div style="float:right;">
+        <button type="button" id="work" onclick="">save</button>
+        </div>
+        <div class="container">
+            <h2>Add Company</h2>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addCompany">Add Company</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addCompany" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Company</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5 >Add Company  </h5>
+                            </div>
+                            <div>
+                                <label>company Name</label>
+                                <input type="text" name="companyName"  id="companyName" placeholder="Enter your comapanyName ">
+                            </div>
+                            <div>
+                                <label>Designation</label>
+                                <input type="text" name="companyName"  id="designation" placeholder="Enter your Designation ">
+                            </div>
+                            <div>
+                                <label>start Date</label>
+                                <input type="date" name="startDate" id="startDate">
+                            </div>
+                            <div>
+                                <label>End Date</label>
+                                <input type="date" name="endDate" id="endDate" >
+                            </div>
+                            <div >
+                                <label>package</label>
+
+                                <input type="number" name="previousPackage" id="previousPackage" placeholder="Enter your Package">
+
+
+                            </div>
+                            <div>
+                                <label>Technologies Worked</label>
+
+                                <input type="text" name="technologiesWorked"  id="technologiesWorked"  placeholder="technologies worked">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"  id="mybutton" onclick="addCompany()">Add Company</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="tab">
+        <div >
+
+            <div class="container">
+                <h2>Add Education</h2>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addEducation">Add Education</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="addEducation" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <h5 > Add Education </h5>
+                                </div>
+                                <div>
+                                    <label>Course</label>
+                                    <input type="text" name="course"  id="course" placeholder="Enter your Coursetype Name ex:B.Tech">
+                                </div>
+                                <div>
+                                    <label>Branch name</label>
+                                    <input type="text" name="branch" id="branch" placeholder="Enter your Branch">
+                                </div>
+                                <div>
+                                    <label>Institution name</label>
+                                    <input type="text" name="institutionName" id="institutionName" placeholder="Enter your Institution Name,place">
+                                </div>
+                                <div >
+                                    <label>Percentage</label>
+
+                                    <input type="number" name="percentage" id="percentage" min="0" max="100" placeholder="Enter your Percentage">
+                                    <span >%</span>
+
+                                </div>
+                                <div>
+                                    <label>Year Of Pass</label>
+
+                                    <input type="number" name="passYear"  id="passYear" min="1950" max="2020" placeholder="Year of pass">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"  onclick="addEducation()">Add Education</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div style="overflow:auto;">
+        <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Save&Next</button>
+        </div>
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+
+    </div>
+</form>
+
+<script>
+    function addEducation()
+    {
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        var course = y["course"].value;
+        var branch = y["branch"].value;
+        var institutionName = y["institutionName"].value;
+        var passYear = y["passYear"].value;
+        var percentage = y["percentage"].value;
+        if(stringLengthAndEmpty(course))
+        {
+            y["course"].className += "invalid";
+            valid=false;
+        }
+        else
+        {
+            y["course"].className += "valid";
+        }
+        if(stringLengthAndEmpty(institutionName))
+        {
+            y["institutionName"].className += "invalid";
+            valid=false;
+        }
+        else
+        {
+            y["institutionName"].className += "valid";
+        }
+        if(numberLength(percentage) )
+        {
+            y["percentage"].className += "invalid";
+            valid=false;
+        }
+        else
+        {
+            y["percentage"].className += "valid";
+        }
+        if(isYear(passYear))
+        {
+            y["passYear"].className += "invalid";
+            valid=false;
+        }
+        else
+        {
+            y["passYear"].className += "valid";
+        }
+
+
+    }
+   function addCompany()
+   {
+       x = document.getElementsByClassName("tab");
+       y = x[currentTab].getElementsByTagName("input");
+       var companyName = y["companyName"].value;
+       var designation =y["designation"].value;
+       var startDate = y["startDate"].value;
+       var endDate =y["endDate"].value;
+       var package = y["previousPackage"].value;
+       var technologies = y["technologiesWorked"].value;
+       if(stringLengthAndEmpty(companyName))
+       {
+           y["companyName"].className += "invalid";
+           valid=false;
+       }
+       else
+       {
+           y["companyName"].className += "valid";
+       }
+       if(stringLengthAndEmpty(designation))
+       {
+           y["designation"].className += "invalid";
+           valid=false;
+       }
+       else
+       {
+           y["designation"].className += "valid";
+       }
+       if(stringLengthAndEmpty(technologies))
+       {
+           y["technologiesWorked"].className += "invalid";
+           valid=false;
+       }
+       else
+       {
+           y["technologiesWorked"].className += "valid";
+       }
+       if(isFutureDate(startDate) || startDate.length==0)
+       {
+           y["startDate"].className += "invalid";
+           valid=false;
+       }
+       else
+       {
+           y["startDate"].className += "valid";
+       }
+       if(isEdLtSd(startDate,endDate) || endDate=="")
+       {
+           y["endDate"].className += "invalid";
+           valid=false;
+       }
+       else
+       {
+           y["endDate"].className += "valid";
+       }
+       addCompanyToForm(companyName);
+   }
+  function addCompanyToForm()
+  {
+      var newItem = document.createElement("p");
+      var textnode = document.createTextNode(companyName);
+      newItem.appendChild(textnode);
+
+      var list = document.getElementById("mybutton");
+      list.insertBefore(newItem, list.childNodes[0]);
+  }
+    var p=1;
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "save&Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+
+
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    }
+
+    function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+
+        if(currentTab==0)
+        {
+           /* var fullName = y["name"].value;
+
+            var mobile = y["mobile"].value;
+
+            var dob =y["dob"].value;
+
+            var email = y["email"].value;
+
+            if(stringLengthAndEmpty(fullName))
+            {
+                y["fullName"].className += "invalid";
+                valid=false;
+            }
+            else
+            {
+                y["fullName"].className += "valid";
+            }
+
+            if(mobile.length!=10 || isNaN(mobile))
+            {
+                y["mobile"].className += "invalid";
+                valid=false;
+            }
+            else
+            {
+                y["mobile"].className += "valid";
+            }
+
+            if(isFutureDate(dob) || dob=="")
+            {
+                y["dob"].className += "invalid";
+                valid =false;
+
+            }
+            else
+            {
+                y["dob"].className += "valid";
+            }
+
+            if(!validateEmail(email))
+            {
+                y["email"].className += "invalid";
+                valid =false;
+            }
+            else
+            {
+                y["email"].className += "valid";
+            }*/
+
+        }
+
+        /*for (i = 0; i < y.length; i++) {
+          // If a field is empty...
+          if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+          }
+        }*/
+
+        if(currentTab==1)
+        {
+
+           /* var designation=y["designation"].value;
+
+            var experience=y["experience"].value;
+            var skills = y["skills"].value;
+
+
+            if(numberLength(experience))
+            {
+                y["experience"].className += "invalid";
+                valid=false;
+            }
+            else
+            {
+                y["experience"].className += "valid";
+            }
+            if(stringLengthAndEmpty(skills))
+            {
+                y["skills"].className += "invalid";
+                valid=false;
+            }
+            else
+            {
+                y["skills"].className += "valid";
+            }
+
+
+
+
+            */
+
+        }
+      if(currentTab==2)
+      {
+
+      }
+        if (valid)
+        {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+
+    }
+
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+    function isFutureDate(date)
+    {
+        var date=new Date(date)
+
+        var currentDate = new Date();
+
+        if(date > currentDate)
+            return true;
+
+        return false;
+    }
+    function isYear(year)
+    {
+        if(year.length==4 || isNaN(year) || year=="")
+            return true;
+
+        return false
+    }
+    function numberLength(number)
+    {
+        if(number.length>2 || isNaN(number) || number=="")
+            return true;
+
+        return false;
+    }
+    function stringLengthAndEmpty(string)
+    {
+        if(string.length>=50 || string=="")
+            return true;
+
+        return false;
+
+    }
+    function isEdLtSd(startdate,enddate)
+    {
+
+        if(startdate > enddate)
+            return true;
+        return false;
+    }
+
+
+
+</script>
+
+</body>
+</html>
